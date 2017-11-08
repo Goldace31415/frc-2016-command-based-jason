@@ -1,10 +1,18 @@
 package org.usfirst.frc.team2485.robot;
 
 
+import java.util.ArrayList;
+
 import org.usfirst.frc.team2485.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2485.robot.subsystems.SpeedControllerWrapper;
 
+import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
 
 /**
@@ -27,6 +35,32 @@ public class RobotMap {
 	
 	public static DriveTrain driveTrain;
 	
+	public static CANTalon shooterMotorLeft;
+	public static CANTalon shooterMotorRight;
+	
+	public static SpeedControllerWrapper shooterWrapper;
+	
+	public static Solenoid solenoid1;
+	public static Solenoid solenoid2;
+	public static BoulderStager boulderStager;
+	
+	public static Encoder shooterEnc;
+	
+	public static Solenoid upperSolenoid;
+	public static Solenoid lowerSolenoid;
+	
+	public static Shooter shooter;
+	
+	public static VictorSP armMotor;
+	
+	public static SpeedControllerWrapper armWrapper;
+	
+	public static InvertedAbsoluteEncoder armEncoder;
+	
+	public static IntakeArm intakeArm;
+	
+
+	
 	public static void init() {
 		rightDriveVictorSPs = new VictorSP[] {new VictorSP(5), new VictorSP(6), new VictorSP(7)};
 		leftDriveVictorSPs = new VictorSP[] {new VictorSP(2), new VictorSP(3), new VictorSP(4)};
@@ -38,6 +72,33 @@ public class RobotMap {
 		leftDriveEncoder = new Encoder(2, 3);
 		
 		
+		
+		shooterMotorLeft = new CANTalon(2);
+		shooterMotorRight = new CANTalon(3);
+		
+		
+		SpeedController[] shooterMotors = {shooterMotorLeft, shooterMotorRight};
+		
+		shooterWrapper = new SpeedControllerWrapper(shooterMotors);
+		
+		shooterEnc = new Encoder(6, 7);
+		
+		solenoid1 = new Solenoid(6);
+		solenoid2 = new Solenoid(7);
+		
+		lowerSolenoid = new Solenoid(4);
+		upperSolenoid = new Solenoid(5);
+		
+		armMotor = new VictorSP(0);
+		
+		armWrapper = new SpeedControllerWrapper(armMotor);
+		
+		armEncoder = new InvertedAbsoluteEncoder(new AnalogPotentiometer(0));
+		
+		boulderStager = new BoulderStager();
+		intakeArm = new IntakeArm();
+		shooter = new Shooter();
+		driveTrain = new DriveTrain();
 
 		
 		

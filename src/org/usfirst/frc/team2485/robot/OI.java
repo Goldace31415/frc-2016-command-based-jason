@@ -2,8 +2,10 @@ package org.usfirst.frc.team2485.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2485.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2485.robot.commands.SetStager;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,10 +19,19 @@ public class OI {
 	public static final int XBOX_AXIS_LY = 1;
 	public static final int XBOX_AXIS_RX = 4;
 	
+	public static final int XBOX_BUTTON_A = 1;
+	public static final int XBOX_BUTTON_B = 2;
+	public static final int XBOX_BUTTON_X = 3;
+	public static final int XBOX_BUTTON_Y = 4;
+	
+	
+	
 	
 	public static void init() {
 		driver = new Joystick(0);
 		operator = new Joystick(1);
+		
+		new JoystickButton(driver, XBOX_BUTTON_X).whenPressed(new SetStager());
 		
 		
 	}
